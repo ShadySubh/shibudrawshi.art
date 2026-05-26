@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Mail, Send, MessageSquare, ArrowUpRight, Play, Layers, Palette, Instagram } from "lucide-react";
+import { MapPin, Mail, Send, MessageSquare, ArrowUpRight, Play, Layers, Palette } from "lucide-react";
 
 // ─── Label ─────────────────────────────────────────────────────────────────
 function Label({ children }: { children: React.ReactNode }) {
@@ -73,6 +73,17 @@ function CatSilhouette() {
       {/* eyes */}
       <ellipse cx="9" cy="14" rx="1.2" ry="1.4" fill="#fafafa"/>
       <ellipse cx="13" cy="14" rx="1.2" ry="1.4" fill="#fafafa"/>
+    </svg>
+  );
+}
+
+// ─── Inline Instagram SVG ──────────────────────────────────────────────────
+function InstagramIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
     </svg>
   );
 }
@@ -221,7 +232,7 @@ export default function Home() {
                 value: "+91 6026764236", href: "https://wa.me/916026764236",
               },
               {
-                id: "contact-instagram", icon: Instagram, label: "Instagram",
+                id: "contact-instagram", icon: InstagramIcon, label: "Instagram",
                 value: "@shibudrawshi.art", href: "https://instagram.com/shibudrawshi.art",
               },
             ].map(({ id, icon: Icon, label, value, href }) => {
