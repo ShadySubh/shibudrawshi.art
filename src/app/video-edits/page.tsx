@@ -116,13 +116,10 @@ export default function VideoEdits() {
                 className="object-cover transition-all duration-500 group-hover:scale-105 grayscale-[15%] group-hover:grayscale-0"
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
-              {/* Play overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2c2a26]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 border border-[#faf7f2]/40 flex items-center justify-center bg-[#faf7f2]/10 backdrop-blur-sm">
-                    <Play className="w-3 h-3 text-[#faf7f2] fill-[#faf7f2]" />
-                  </div>
-                  <span className="font-mono text-[9px] text-[#faf7f2]/70 uppercase tracking-wider">View</span>
+              {/* Centered glassmorphic play button */}
+              <div className="absolute inset-0 bg-[#2c2a26]/10 group-hover:bg-[#2c2a26]/35 transition-colors duration-300 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full border border-[#faf7f2]/40 bg-[#faf7f2]/15 backdrop-blur-[2px] flex items-center justify-center shadow-md group-hover:scale-110 group-hover:bg-[#faf7f2]/25 group-hover:border-[#faf7f2]/60 group-hover:shadow-lg transition-all duration-300">
+                  <Play className="w-4 h-4 text-[#faf7f2] fill-[#faf7f2] translate-x-[1.5px]" />
                 </div>
               </div>
               {/* Index */}
