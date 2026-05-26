@@ -190,10 +190,6 @@ export default function Home() {
                   priority
                 />
               </div>
-              {/* Cat pal perched beside the frame */}
-              <div className="absolute -bottom-1 -right-7 pointer-events-none">
-                <GhibliCat />
-              </div>
             </div>
             <div className="flex flex-col gap-1 min-w-0 pt-0.5">
               <Label>Artist</Label>
