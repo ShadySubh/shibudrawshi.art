@@ -164,3 +164,12 @@
   70%  { height: 10px; opacity: 0.6; }
   100% { height: 10px; opacity: 0; }
 }
+
+/* ── Cat rubbing ───────────────────────────────────────────────── */
+@keyframes catRub {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  50% { transform: rotate(-2deg); }
+  75% { transform: rotate(-10deg); }
+}
+.cat-rub { animation: catRub 2s ease-in-out infinite; }

@@ -136,25 +136,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── JUNGLE DIVIDER ── */}
-      <div className="relative w-full h-12 md:h-14 overflow-hidden border-y border-zinc-200">
-        <Image
-          src="/jungle-divider.png"
-          alt="Assam jungle foliage divider with hidden cat"
-          fill
-          className="object-cover object-[center_55%]"
-          sizes="1152px"
-        />
-        {/* Fade out left & right edges to blend with page */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#f0ede4] via-transparent to-[#f0ede4] pointer-events-none" />
-        {/* Rain drips suggestion */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: "repeating-linear-gradient(176deg, transparent 0px, transparent 20px, rgba(168,200,210,0.10) 20px, rgba(168,200,210,0.10) 21px)",
-          }}
-        />
-      </div>
 
       {/* ── MAIN GRID ── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
@@ -163,21 +144,27 @@ export default function Home() {
         <aside className="lg:col-span-4 flex flex-col gap-3">
 
           {/* Profile */}
-          <Cell className="flex gap-4 items-start p-4">
-            <div className="relative w-[88px] h-[88px] shrink-0 overflow-hidden border border-zinc-200">
-              <Image
-                src="/pfp.jpg"
-                alt="Subhasish Das — shibudrawshi"
-                fill
-                className="object-cover object-top"
-                sizes="88px"
-                priority
-              />
+          <Cell className="flex gap-4 items-start p-4 relative overflow-hidden">
+            <div className="relative shrink-0">
+              <div className="relative w-[88px] h-[88px] overflow-hidden border border-zinc-200 z-10 bg-zinc-100">
+                <Image
+                  src="/pfp.jpg"
+                  alt="Shibu — shibudrawshi"
+                  fill
+                  className="object-cover object-top"
+                  sizes="88px"
+                  priority
+                />
+              </div>
+              {/* Animated Rubbing Cat */}
+              <div className="absolute -right-6 bottom-0 z-0 text-zinc-700 cat-rub origin-bottom-left scale-75">
+                <CatSilhouette />
+              </div>
             </div>
-            <div className="flex flex-col gap-1 min-w-0 pt-0.5">
+            <div className="flex flex-col gap-1 min-w-0 pt-0.5 z-10 bg-zinc-50/80 backdrop-blur-sm rounded-r-md">
               <Label>Artist</Label>
               <p className="font-serif text-lg font-semibold text-zinc-950 leading-tight">
-                Subhasish Das
+                Shibu
               </p>
               <p className="font-mono text-[10px] text-zinc-500">shibudrawshi</p>
               <div className="mt-1.5 flex items-center gap-1.5 text-[11px] text-zinc-600 font-sans">
@@ -199,13 +186,26 @@ export default function Home() {
           </Cell>
 
           {/* NO AI Banner */}
-          <div className="border-2 border-zinc-900 bg-zinc-50 p-4">
-            <p className="font-serif font-bold text-[15px] text-zinc-950 leading-snug">
+          <div className="relative border-2 border-dashed border-zinc-400 bg-[#fdfcfb] p-5 rotate-[1deg] shadow-sm group">
+            <div className="absolute top-2 right-2 border-2 border-red-700/80 rounded-full w-12 h-12 flex flex-col items-center justify-center opacity-80 rotate-[-12deg] pointer-events-none group-hover:rotate-[5deg] transition-transform duration-500">
+              <span className="text-[6px] font-mono font-bold text-red-700/80 uppercase">100%</span>
+              <span className="text-[7px] font-mono font-bold text-red-700/80 uppercase">Human</span>
+            </div>
+            <p className="font-serif font-bold text-[15px] text-zinc-900 leading-snug pr-8 relative z-10">
               I draw and create things to feel happy. All creation here was made by a human. I’m that human.
             </p>
-            <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 mt-3">
-              NO AI GENERATION
-            </p>
+            <div className="mt-4 flex items-center gap-2">
+              <span className="block h-px bg-zinc-300 flex-1"></span>
+              <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 bg-[#fdfcfb] px-2 relative z-10">
+                NO AI GENERATION
+              </p>
+              <span className="block h-px bg-zinc-300 flex-1"></span>
+            </div>
+            {/* Texture overlay */}
+            <div
+              className="absolute inset-0 opacity-10 pointer-events-none mix-blend-multiply"
+              style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" }}
+            />
           </div>
 
           {/* Contact */}
@@ -215,6 +215,10 @@ export default function Home() {
               {
                 id: "contact-email", icon: Mail, label: "Email",
                 value: "shibudrawshi@gmail.com", href: "mailto:shibudrawshi@gmail.com",
+              },
+              {
+                id: "contact-whatsapp", icon: MessageSquare, label: "WhatsApp",
+                value: "+91 9954168934", href: "https://wa.me/919954168934",
               },
               {
                 id: "contact-telegram", icon: Send, label: "Telegram",
@@ -245,7 +249,10 @@ export default function Home() {
                 : <div key={id} id={id}>{inner}</div>;
             })}
           </div>
-
+          {/* Primary CTA */}
+          <Link href="/contact" className="block w-full border border-zinc-200 bg-zinc-900 text-white text-center py-3 font-mono text-[11px] uppercase tracking-widest hover:bg-zinc-800 transition-colors">
+            Contact Me ✦
+          </Link>
           {/* Stats */}
           <div className="grid grid-cols-3 border border-zinc-200 divide-x divide-zinc-200 bg-zinc-50">
             {[{ value: "5+", label: "Years" }, { value: "20+", label: "Clients" }, { value: "3", label: "Crafts" }].map(({ value, label }) => (

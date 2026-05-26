@@ -102,18 +102,18 @@ export default function Contact() {
           {/* Info dossier */}
           <div className="border border-[#d8ceba] bg-[#faf6ee]/80">
             <div className="px-4 py-2 border-b border-[#d8ceba]">
-              <p className="font-mono text-[9px] uppercase tracking-wider text-[#a08060]">Artist Details</p>
+              <p className="font-mono text-[9px] uppercase tracking-wider text-[#a08060]">Business Details</p>
             </div>
             <div className="divide-y divide-[#e8e0d0]">
               {[
-                { label: "Based In",      value: "Assam, India" },
-                { label: "Experience",    value: "5+ Years" },
-                { label: "Availability",  value: "Open to Work" },
-                { label: "Response",      value: "Within 24h" },
+                { label: "Name",    value: "Subhasish Das" },
+                { label: "Email",   value: "dassubhasish595@gmail.com" },
+                { label: "Phone",   value: "6026764236" },
+                { label: "Address", value: "Badarpur, Assam, India" },
               ].map(({ label, value }) => (
-                <div key={label} className="flex justify-between items-center px-4 py-2.5">
-                  <span className="font-mono text-[10px] text-[#a08060] uppercase tracking-wide">{label}</span>
-                  <span className="font-sans text-[12px] text-[#2c2416]">{value}</span>
+                <div key={label} className="flex flex-col xl:flex-row xl:justify-between items-start xl:items-center px-4 py-2.5 gap-1">
+                  <span className="font-mono text-[10px] text-[#a08060] uppercase tracking-wide whitespace-nowrap">{label}</span>
+                  <span className="font-sans text-[12px] text-[#2c2416] break-all text-left xl:text-right">{value}</span>
                 </div>
               ))}
             </div>

@@ -32,9 +32,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-6 pt-4 border-t border-zinc-200/50 flex justify-between items-center">
-          <p className="font-mono text-[10px] text-zinc-400">© {new Date().getFullYear()} shibudrawshi.art</p>
-          <p className="font-mono text-[10px] text-zinc-400">All rights reserved</p>
+        <div className="mt-8 pt-6 border-t border-zinc-200/50 flex flex-col gap-5">
+          {/* Legal Links */}
+          <div className="flex flex-wrap justify-center sm:justify-between items-center gap-4 font-mono text-[9px] text-zinc-500 uppercase tracking-wider">
+            <div className="flex flex-wrap items-center gap-4">
+              <Link href="/services" className="hover:text-zinc-950 transition-colors">Services</Link>
+              <Link href="/legal/terms" className="hover:text-zinc-950 transition-colors">Terms & Conditions</Link>
+              <Link href="/legal/privacy" className="hover:text-zinc-950 transition-colors">Privacy Policy</Link>
+              <Link href="/legal/refund" className="hover:text-zinc-950 transition-colors">Refund & Cancellation</Link>
+            </div>
+            <div className="flex items-center gap-4">
+              <p className="font-mono text-[10px] text-zinc-400">© {new Date().getFullYear()} shibudrawshi.art</p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
