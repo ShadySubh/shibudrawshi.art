@@ -130,21 +130,6 @@ export default function VideoEdits() {
                 {(i + 1).toString().padStart(2, "0")}
               </div>
             </div>
-            {/* Meta */}
-            <div className="p-3 border-t border-[#ddd7cc]">
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <p className="font-serif text-[13px] font-semibold text-[#2c2a26] truncate">{project.title}</p>
-                  <p className="font-mono text-[9px] text-[#9c9590] mt-0.5 uppercase tracking-wide">{project.type}</p>
-                </div>
-                <ExternalLink className="w-3.5 h-3.5 text-[#c5bfb2] group-hover:text-[#2c2a26] transition-colors shrink-0 mt-0.5" />
-              </div>
-              <div className="mt-1.5 flex flex-wrap gap-1">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="font-mono text-[9px] border border-[#ddd7cc] px-1.5 py-0.5 text-[#9c9590]">{tag}</span>
-                ))}
-              </div>
-            </div>
           </a>
         ))}
       </div>
