@@ -10,12 +10,54 @@ export const metadata: Metadata = {
 };
 
 const videoProjects = [
-  { id: "v01", title: "Gaming Highlight Reel", type: "YouTube Edit",   thumbnail: "/thumbnail01.png",    tags: ["Gaming", "Motion"] },
-  { id: "v02", title: "Tournament Promo",       type: "Promo Video",   thumbnail: "/thumbnail02(1).png", tags: ["Esports", "Thumb"] },
-  { id: "v03", title: "Cinematic Montage",      type: "Montage",       thumbnail: "/thumbnail02.png",    tags: ["Cinematic", "Color"] },
-  { id: "v04", title: "Event Highlights",       type: "Event Edit",    thumbnail: "/thumbnail05.png",    tags: ["Event", "Cut"] },
-  { id: "v05", title: "Brand Commercial",       type: "Commercial",    thumbnail: "/thumbnail06.png",    tags: ["Brand", "Ad"] },
-  { id: "v06", title: "Vlog Montage",           type: "Vlog",          thumbnail: "/thumbnail07.png",    tags: ["Vlog", "Travel"] },
+  {
+    id: "v01",
+    title: "Gaming Highlight Reel",
+    type: "YouTube Edit",
+    thumbnail: "/thumbnail01.png",
+    tags: ["Gaming", "Motion"],
+    previewUrl: "https://drive.google.com/file/d/10jvsok6dqVOXd51aMaGj-JWBM1uxIZmc/view?usp=drive_link",
+  },
+  {
+    id: "v02",
+    title: "Tournament Promo",
+    type: "Promo Video",
+    thumbnail: "/thumbnail02(1).png",
+    tags: ["Esports", "Thumb"],
+    previewUrl: "https://drive.google.com/file/d/1Wz0IIrcD5uOIvfjaQ9IskWoyyfBjZ-iY/view?usp=drive_link",
+  },
+  {
+    id: "v03",
+    title: "Cinematic Montage",
+    type: "Montage",
+    thumbnail: "/thumbnail02.png",
+    tags: ["Cinematic", "Color"],
+    previewUrl: "https://drive.google.com/file/d/1nEGe090HFXHGwFnbrtGVmE3Y6N6MIlSY/view?usp=drive_link",
+  },
+  {
+    id: "v04",
+    title: "Event Highlights",
+    type: "Event Edit",
+    thumbnail: "/thumbnail05.png",
+    tags: ["Event", "Cut"],
+    previewUrl: "https://drive.google.com/file/d/10y_rMEOVm5JCsaxjqyJSzGtk3WqUbc0a/view?usp=drive_link",
+  },
+  {
+    id: "v05",
+    title: "Brand Commercial",
+    type: "Commercial",
+    thumbnail: "/thumbnail06.png",
+    tags: ["Brand", "Ad"],
+    previewUrl: "https://drive.google.com/file/d/1TA55qVNEbeCLd8XSE3v1FMnIr4kGvjBZ/view?usp=drive_link",
+  },
+  {
+    id: "v06",
+    title: "Vlog Montage",
+    type: "Vlog",
+    thumbnail: "/thumbnail07.png",
+    tags: ["Vlog", "Travel"],
+    previewUrl: "https://drive.google.com/file/d/1UPaWUcWhOnwzNJRin8L3jE9Qnx8AYKxN/view?usp=drive_link",
+  },
 ];
 
 export default function VideoEdits() {
@@ -58,10 +100,13 @@ export default function VideoEdits() {
       {/* Grid — 9:16 thumbnails */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {videoProjects.map((project, i) => (
-          <div
+          <a
             key={project.id}
             id={`video-${project.id}`}
-            className="group relative border border-[#ddd7cc] bg-[#faf7f2] overflow-hidden card-hover"
+            href={project.previewUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group relative block border border-[#ddd7cc] bg-[#faf7f2] overflow-hidden card-hover"
           >
             <div className="relative aspect-[9/16] bg-[#eee9e0] overflow-hidden">
               <Image
@@ -100,7 +145,7 @@ export default function VideoEdits() {
                 ))}
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
 
