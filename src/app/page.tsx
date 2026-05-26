@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Mail, Send, MessageSquare, ArrowUpRight, Play, Layers, Palette } from "lucide-react";
+import { MapPin, Mail, Send, MessageSquare, ArrowUpRight, Play, Layers, Palette, Instagram } from "lucide-react";
 
 // ─── Label ─────────────────────────────────────────────────────────────────
 function Label({ children }: { children: React.ReactNode }) {
@@ -214,19 +214,15 @@ export default function Home() {
             {[
               {
                 id: "contact-email", icon: Mail, label: "Email",
-                value: "shibudrawshi@gmail.com", href: "mailto:shibudrawshi@gmail.com",
+                value: "dassubhasish595@gmail.com", href: "mailto:dassubhasish595@gmail.com",
               },
               {
                 id: "contact-whatsapp", icon: MessageSquare, label: "WhatsApp",
-                value: "+91 9954168934", href: "https://wa.me/919954168934",
+                value: "+91 6026764236", href: "https://wa.me/916026764236",
               },
               {
-                id: "contact-telegram", icon: Send, label: "Telegram",
-                value: "@shadysish", href: "https://t.me/shadysish",
-              },
-              {
-                id: "contact-discord", icon: MessageSquare, label: "Discord",
-                value: "@subh2200", href: undefined,
+                id: "contact-instagram", icon: Instagram, label: "Instagram",
+                value: "@shibudrawshi.art", href: "https://instagram.com/shibudrawshi.art",
               },
             ].map(({ id, icon: Icon, label, value, href }) => {
               const inner = (
