@@ -2,71 +2,126 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-border:     var(--border);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  /* Ghibli Assam Monsoon palette */
-  --color-parchment:   #f3efe5;
-  --color-mist:        #e8efe8;
-  --color-ink:         #1e2a1e;
-  --color-ink-mid:     #3d4f3a;
-  --color-ink-light:   #6b7d62;
-  --color-teal-deep:   #2d5c52;
-  --color-teal-mid:    #4a8a7a;
-  --color-teal-soft:   #8bbfb0;
-  --color-moss:        #6b8f5a;
-  --color-rain-blue:   #b8d4d8;
-  --color-amber:       #c8a06a;
-  --color-amber-soft:  #e8c88a;
-  --color-rose-muted:  #b89090;
-
   --font-serif:  var(--font-lora), Georgia, "Times New Roman", serif;
   --font-mono:   var(--font-space-mono), "Courier New", monospace;
   --font-sans:   var(--font-inter), system-ui, sans-serif;
 }
 
+/* ── Monsoon Parchment Palette ─────────────────────────────────── */
 :root {
-  --background: #f0ede4;
-  --foreground: #1e2a1e;
-  --border:     #c8d0c0;
-  --border-dim: #dce4d8;
+  --bg-page:      #f4f0e8;
+  --bg-card:      #faf7f2;
+  --bg-hover:     #eee9e0;
+  --border:       #ddd7cc;
+  --border-strong:#c5bfb2;
+  --ink:          #2c2a26;
+  --ink-mid:      #6b6560;
+  --ink-muted:    #9c9590;
+  --moss:         #5a7a5a;
+  --moss-soft:    #8aaa8e;
+  --rain:         #7a9db0;
+  --rose:         #b08888;
 }
 
 @layer base {
   * {
-    border-color: var(--border-dim);
+    border-color: var(--border);
     box-sizing: border-box;
   }
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-inter), system-ui, sans-serif;
-    /* Subtle dot-grid — misty morning on paper */
-    background-image: radial-gradient(circle, #a8b8a055 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-color: var(--bg-page);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    /* faint warm dot-grid — tea-stained paper texture */
+    background-image: radial-gradient(circle, rgba(197, 191, 178, 0.14) 1px, transparent 1px);
+    background-size: 26px 26px;
     min-height: 100vh;
   }
-  h1, h2, h3 {
-    font-family: var(--font-lora), Georgia, serif;
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
   }
 }
 
 /* ── Scrollbar ─────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #f0ede4; }
-::-webkit-scrollbar-thumb { background: #8bbfb0; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #4a8a7a; }
+::-webkit-scrollbar-track { background: var(--bg-page); }
+::-webkit-scrollbar-thumb { background: var(--moss-soft); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--moss); }
 
-/* ── Rain animation ────────────────────────────────────────────── */
-@keyframes rain {
-  0%   { transform: translateY(-100%) translateX(0);   opacity: 0;   }
-  10%  { opacity: 0.6; }
-  90%  { opacity: 0.4; }
-  100% { transform: translateY(100vh) translateX(-20px); opacity: 0; }
+/* ── Nav link underline ────────────────────────────────────────── */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--moss);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* ── Card hover lift ───────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(44, 42, 38, 0.07);
 }
 
-/* Raindrop pseudo-elements on the rain overlay */
+/* ── Page entrance ─────────────────────────────────────────────── */
+.page-enter { animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mist drift (hero bottom edge) ─────────────────────────────── */
+@keyframes mistDrift {
+  0%   { opacity: 0.4; transform: translateX(0); }
+  50%  { opacity: 0.7; transform: translateX(12px); }
+  100% { opacity: 0.4; transform: translateX(0); }
+}
+.mist-drift { animation: mistDrift 8s ease-in-out infinite; }
+
+/* ── Cat: tail sway ────────────────────────────────────────────── */
+.cat-tail {
+  animation: tailSway 2.8s ease-in-out infinite;
+  transform-origin: 38px 40px;
+}
+@keyframes tailSway {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(12deg); }
+}
+
+/* ── Cat: breathing body ───────────────────────────────────────── */
+.cat-breathe {
+  animation: catBreathe 3.5s ease-in-out infinite;
+  transform-origin: 24px 42px;
+}
+@keyframes catBreathe {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(1.025); }
+}
+
+/* ── Cat: eye blink ────────────────────────────────────────────── */
+.cat-blink {
+  animation: catBlink 4.5s ease-in-out infinite;
+  transform-origin: 24px 22px;
+}
+@keyframes catBlink {
+  0%, 90%, 95%, 100% { transform: scaleY(1); }
+  92%                { transform: scaleY(0.08); }
+}
+
+/* ── Petal float ───────────────────────────────────────────────── */
+@keyframes petalFloat {
+  0%   { transform: translateY(0) rotate(0deg);    opacity: 0.5; }
+  100% { transform: translateY(5px) rotate(18deg); opacity: 0.2; }
+}
+.petal { animation: petalFloat 2.8s ease-in-out infinite alternate; }
+
+/* ── Rain overlay (CSS-only, performant) ───────────────────────── */
 .rain-overlay {
   position: fixed;
   inset: 0;
@@ -74,7 +129,6 @@
   z-index: 1;
   overflow: hidden;
 }
-
 .rain-overlay::before,
 .rain-overlay::after {
   content: '';
@@ -84,92 +138,25 @@
     repeating-linear-gradient(
       175deg,
       transparent 0px,
-      transparent 18px,
-      rgba(180, 210, 220, 0.12) 18px,
-      rgba(180, 210, 220, 0.12) 19px
+      transparent 20px,
+      rgba(155, 185, 198, 0.07) 20px,
+      rgba(155, 185, 198, 0.07) 21px
     );
-  animation: rainShift 3s linear infinite;
+  animation: rainShift 3.2s linear infinite;
 }
-
 .rain-overlay::after {
   background-image:
     repeating-linear-gradient(
       174deg,
       transparent 0px,
-      transparent 30px,
-      rgba(150, 190, 205, 0.08) 30px,
-      rgba(150, 190, 205, 0.08) 31px
+      transparent 32px,
+      rgba(135, 165, 180, 0.05) 32px,
+      rgba(135, 165, 180, 0.05) 33px
     );
-  animation-duration: 4.5s;
-  animation-delay: -1.5s;
+  animation-duration: 4.8s;
+  animation-delay: -1.8s;
 }
-
 @keyframes rainShift {
   0%   { background-position: 0 -200px; }
   100% { background-position: -30px 200px; }
 }
-
-/* ── Petal float ───────────────────────────────────────────────── */
-@keyframes petalFloat {
-  0%   { transform: translateY(0) rotate(0deg);    opacity: 0.55; }
-  100% { transform: translateY(6px) rotate(22deg); opacity: 0.25; }
-}
-.petal { animation: petalFloat 2.8s ease-in-out infinite alternate; }
-
-/* ── Page fade-in ──────────────────────────────────────────────── */
-.page-enter { animation: fadeIn 0.45s ease-out; }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Nav link ──────────────────────────────────────────────────── */
-.nav-link { position: relative; }
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 0;
-  width: 0; height: 1px;
-  background: #4a8a7a;
-  transition: width 0.3s ease;
-}
-.nav-link:hover::after { width: 100%; }
-
-/* ── Card hover ────────────────────────────────────────────────── */
-.card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(30, 42, 30, 0.1);
-}
-
-/* ── Mist drift (hero bottom edge) ────────────────────────────── */
-@keyframes mistDrift {
-  0%   { opacity: 0.5; transform: translateX(0); }
-  50%  { opacity: 0.8; transform: translateX(15px); }
-  100% { opacity: 0.5; transform: translateX(0); }
-}
-.mist-drift { animation: mistDrift 8s ease-in-out infinite; }
-
-/* ── Cat wobble ────────────────────────────────────────────────── */
-@keyframes catWag {
-  0%, 100% { transform: rotate(0deg); }
-  25%       { transform: rotate(-3deg); }
-  75%       { transform: rotate(3deg); }
-}
-.cat-wag { animation: catWag 3s ease-in-out infinite; }
-
-/* ── Raindrop drip on cells ────────────────────────────────────── */
-@keyframes drip {
-  0%   { height: 0;   opacity: 0.8; }
-  70%  { height: 10px; opacity: 0.6; }
-  100% { height: 10px; opacity: 0; }
-}
-
-/* ── Cat rubbing ───────────────────────────────────────────────── */
-@keyframes catRub {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-8deg); }
-  50% { transform: rotate(-2deg); }
-  75% { transform: rotate(-10deg); }
-}
-.cat-rub { animation: catRub 2s ease-in-out infinite; }
